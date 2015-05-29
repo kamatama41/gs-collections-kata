@@ -34,7 +34,7 @@ public class Exercise1Test extends CompanyDomainForKata
          * Get the name of each of the company's customers.
          */
         MutableList<Customer> customers = this.company.getCustomers();
-        MutableList<String> customerNames = null;
+        MutableList<String> customerNames = customers.collect(nameFunction);
 
         MutableList<String> expectedNames = FastList.newListWith("Fred", "Mary", "Bill");
         Assert.assertEquals(expectedNames, customerNames);
@@ -47,7 +47,7 @@ public class Exercise1Test extends CompanyDomainForKata
          * Get the city for each of the company's customers.
          */
         MutableList<Customer> customers = this.company.getCustomers();
-        MutableList<String> customerCities = null;
+        MutableList<String> customerCities = customers.collect(Customer::getCity);
 
         MutableList<String> expectedCities = FastList.newListWith("London", "Liphook", "London");
         Assert.assertEquals(expectedCities, customerCities);
@@ -60,7 +60,7 @@ public class Exercise1Test extends CompanyDomainForKata
          * Which customers come from London? Get a collection of those which do.
          */
         MutableList<Customer> customers = this.company.getCustomers();
-        MutableList<Customer> customersFromLondon = null;
+        MutableList<Customer> customersFromLondon = customers.select(customer -> "London".equals(customer.getCity()));
         Verify.assertSize("Should be 2 London customers", 2, customersFromLondon);
     }
 }

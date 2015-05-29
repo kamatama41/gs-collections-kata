@@ -54,13 +54,14 @@ public class Company
 
     public MutableList<Order> getOrders()
     {
-        Assert.fail("Refactor this code to use GS Collections as part of Exercise 3");
-        MutableList<Order> orders = FastList.newList();
-        for (Customer customer : this.customers)
-        {
-            orders.addAll(customer.getOrders());
-        }
-        return orders;
+//        Assert.fail("Refactor this code to use GS Collections as part of Exercise 3");
+//        MutableList<Order> orders = FastList.newList();
+//        for (Customer customer : this.customers)
+//        {
+//            orders.addAll(customer.getOrders());
+//        }
+//        return orders;
+        return customers.flatCollect(Customer::getOrders);
     }
 
     public Customer getMostRecentCustomer()
@@ -89,7 +90,6 @@ public class Company
         /**
          * Use a {@link Predicate} to find a {@link Customer} with the name given.
          */
-        Assert.fail("Implement this method as part of Exercise 2");
-        return null;
+        return this.customers.detect(customer -> customer.getName().equals(name));
     }
 }
